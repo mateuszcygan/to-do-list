@@ -21,8 +21,24 @@ function addNewToDoTask() {
   let input = document.getElementById("search-box").value;
 
   if (containsOnlyWhiteSpaces(input)) {
+    //get all elements from the webpage (empty input => only warning pop-up visible)
     let warning = document.querySelector(".alert-error");
-    console.log(warning);
+    let title = document.getElementById("title");
+    let searchBox = document.getElementById("main");
+    let tasksToDo = document.getElementById("my-tasks");
+    let tasksDone = document.getElementById("done");
+
+    warning.style.display = "flex";
+    // document.body.style.display = "flex";
+    // document.body.style.justifyContent = "center";
+    // document.body.style.alignItems = "center";
+    // warning.style.alignItems = "center";
+
+    // console.log("Height: ", document.body.style.height);
+    title.style.display = "none";
+    searchBox.style.display = "none";
+    tasksToDo.style.display = "none";
+    tasksDone.style.display = "none";
   } else {
     let taskListElement = document.createElement("li");
     let taskLabel = createLabel(input);
@@ -42,3 +58,11 @@ function addNewToDoTask() {
     ul.appendChild(taskListElement);
   }
 }
+
+let confirmEmptyInput = () => {
+  document.querySelector(".alert-error").style.display = "none";
+  document.getElementById("title").style.removeProperty("display");
+  document.getElementById("main").style.removeProperty("display");
+  document.getElementById("my-tasks").style.removeProperty("display");
+  document.getElementById("done").style.removeProperty("display");
+};
