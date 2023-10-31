@@ -28,25 +28,29 @@
 
       <button class="pop-up-button" onClick="confirmEmptyInput()">OK</button>
     </div>
-    <div id="title">
-      <h1>To Do List</h1>
-      <div id="main">
-        <input
-          type="search"
-          id="search-box"
-          name="test"
-          placeholder="Add new task..."
-        />
-        <button onClick="addNewToDoTask()">Add</button>
+    <div id="shade">
+      <div id="wrapper">
+        <div id="title">
+          <h1>To Do List</h1>
+          <div id="main">
+            <input
+              type="search"
+              id="search-box"
+              name="test"
+              placeholder="Add new task..."
+            />
+            <button onClick="addNewToDoTask()">Add</button>
+          </div>
+        </div>
+        <div id="my-tasks">
+          <h4>Tasks to do</h4>
+          <ul id="list-to-do"></ul>
+        </div>
+        <div id="done">
+          <h4>Tasks done</h4>
+          <ul id="list-done"></ul>
+        </div>
       </div>
-    </div>
-    <div id="my-tasks">
-      <h4>Tasks to do</h4>
-      <ul id="list-to-do"></ul>
-    </div>
-    <div id="done">
-      <h4>Tasks done</h4>
-      <ul id="list-done"></ul>
     </div>
   </body>
 </html>
