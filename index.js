@@ -29,6 +29,7 @@ function addNewToDoTask() {
     let tasksDone = document.getElementById("done");
     let divWrapper = document.getElementById("wrapper");
     let divShade = document.getElementById("shade");
+    let divImageStack = document.getElementById("image-stack");
 
     warning.style.display = "flex";
     // document.body.style.display = "flex";
@@ -43,6 +44,7 @@ function addNewToDoTask() {
     tasksDone.style.display = "none";
     divWrapper.style.display = "none";
     divShade.style.display = "none";
+    divImageStack.style.display = "none";
   } else {
     let taskListElement = document.createElement("li");
     let taskLabel = createLabel(input);
@@ -71,4 +73,5 @@ let confirmEmptyInput = () => {
   document.getElementById("done").style.removeProperty("display");
   document.getElementById("wrapper").style.removeProperty("display");
   document.getElementById("shade").style.removeProperty("display");
+  document.getElementById("image-stack").style.removeProperty("display");
 };
