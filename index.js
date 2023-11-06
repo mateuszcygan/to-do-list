@@ -1,6 +1,19 @@
+//function that creates id (1, 2, 3 ...)
+let incrementID = (function (n) {
+  return function () {
+    n += 1;
+    return n;
+  };
+})(0);
+
 let createLabel = (input) => {
+  let integerID = incrementID();
+  let stringID = integerID.toString();
+  console.log(integerID);
+
   let label = document.createElement("label");
   label.innerText = input;
+  label.id = stringID;
   return label;
 };
 
@@ -13,6 +26,10 @@ let createCheckbox = (label, neededElements) => {
 
 function containsOnlyWhiteSpaces(str) {
   return !str.replace(/\s/g, "").length;
+}
+
+function crossOutLabel() {
+  /* define the function that crosses out a certain text here */
 }
 
 function addNewToDoTask() {
