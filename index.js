@@ -17,6 +17,15 @@ let createLabel = (input) => {
   return label;
 };
 
+function crossOut(label) {
+  label.setAttribute("style", "text-decoration: line-through");
+  console.log(label);
+}
+
+let cancelCrossOut = (label) => {
+  label.removeAttribute("style");
+};
+
 let createCheckbox = (label, neededElements) => {
   for (let i = 0; i < neededElements.length; i++) {
     label.appendChild(neededElements[i]);
@@ -26,10 +35,6 @@ let createCheckbox = (label, neededElements) => {
 
 function containsOnlyWhiteSpaces(str) {
   return !str.replace(/\s/g, "").length;
-}
-
-function crossOutLabel() {
-  /* define the function that crosses out a certain text here */
 }
 
 function addNewToDoTask() {
@@ -67,13 +72,22 @@ function addNewToDoTask() {
     let taskLabel = createLabel(input);
 
     //create elements needed for checkbox
-    let taskInput = document.createElement("input");
-    taskInput.type = "checkbox";
+    let inputCheckbox = document.createElement("input");
+    inputCheckbox.type = "checkbox";
+    inputCheckbox.addEventListener("change", function () {
+      let checked = inputCheckbox.checked;
+      //first is the checkbox changed and then the function executed
+      if (checked) {
+        crossOut(inputCheckbox.parentElement);
+      } else {
+        cancelCrossOut(inputCheckbox.parentElement);
+      }
+    });
 
     let taskSpan = document.createElement("span");
     taskSpan.class = "checkmark";
 
-    let checkboxElements = [taskInput, taskSpan];
+    let checkboxElements = [inputCheckbox, taskSpan];
 
     taskLabel = createCheckbox(taskLabel, checkboxElements);
 
