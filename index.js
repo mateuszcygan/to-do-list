@@ -37,6 +37,15 @@ function containsOnlyWhiteSpaces(str) {
   return !str.replace(/\s/g, "").length;
 }
 
+function moveToTasksDone(task) {
+  let tasksDoneList = document.querySelector("#list-done");
+  let taskDoneListElement = document.createElement("li");
+  let taskDoneText = task.innerText;
+  taskDoneListElement.innerHTML = taskDoneText;
+  console.log("Element that should be appended: ", taskDoneListElement);
+  tasksDoneList.appendChild(taskDoneListElement);
+}
+
 function addNewToDoTask() {
   //get a list with tasks to do and value of the input in input field
   let ul = document.getElementById("list-to-do");
@@ -74,6 +83,8 @@ function addNewToDoTask() {
     //create elements needed for checkbox
     let inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
+
+    //after checking the checkbox, the task is crossed out
     inputCheckbox.addEventListener("change", function () {
       let checked = inputCheckbox.checked;
       //first is the checkbox changed and then the function executed
@@ -81,6 +92,15 @@ function addNewToDoTask() {
         crossOut(inputCheckbox.parentElement);
       } else {
         cancelCrossOut(inputCheckbox.parentElement);
+      }
+    });
+
+    //after changing the state of the checkbox, the task toggles between "Tasks to do" and "Tasks done"
+    inputCheckbox.addEventListener("change", function () {
+      let checked = inputCheckbox.checked;
+      //after checking the checkbox, the task should appear under "Tasks done"
+      if (checked) {
+        moveToTasksDone(inputCheckbox.parentElement);
       }
     });
 
