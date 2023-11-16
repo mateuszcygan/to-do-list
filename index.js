@@ -9,7 +9,7 @@ let incrementID = (function (n) {
 let createLabel = (input) => {
   let integerID = incrementID();
   let stringID = integerID.toString();
-  console.log(integerID);
+  // console.log(integerID);
 
   let label = document.createElement("label");
   label.innerText = input;
@@ -18,15 +18,18 @@ let createLabel = (input) => {
 };
 
 function crossOut(label) {
-  label.setAttribute("style", "text-decoration: line-through");
-  console.log(label);
+  label.setAttribute(
+    "style",
+    "text-decoration: line-through; color: rgb(211, 211, 211)"
+  );
+  // console.log(label);
 }
 
 let cancelCrossOut = (label) => {
   label.removeAttribute("style");
 };
 
-let createCheckbox = (label, neededElements) => {
+let createLabelWithCheckbox = (label, neededElements) => {
   for (let i = 0; i < neededElements.length; i++) {
     label.appendChild(neededElements[i]);
   }
@@ -37,19 +40,28 @@ function containsOnlyWhiteSpaces(str) {
   return !str.replace(/\s/g, "").length;
 }
 
-function moveToTasksDone(task) {
+function changeList(task, checked) {
   let tasksDoneList = document.querySelector("#list-done");
-  let taskDoneListElement = document.createElement("li");
-  let taskDoneText = task.innerText;
-  taskDoneListElement.innerHTML = taskDoneText;
-  console.log("Element that should be appended: ", taskDoneListElement);
-  tasksDoneList.appendChild(taskDoneListElement);
+
+  if (checked) {
+    tasksDoneList.appendChild(task);
+  } else {
+    tasksDoneList.removeChild(task);
+  }
 }
 
 function addNewToDoTask() {
   //get a list with tasks to do and value of the input in input field
-  let ul = document.getElementById("list-to-do");
+  let listToDo = document.getElementById("list-to-do");
+  let listDone = document.getElementById("done");
+
   let input = document.getElementById("search-box").value;
+
+  //create a paragraph that will be displayed in the tasks-done
+  let para = document.createElement("p");
+  para.textContent = input;
+  para.setAttribute("style", "display:none");
+  listDone.appendChild(para);
 
   if (containsOnlyWhiteSpaces(input)) {
     //get all elements from the webpage (empty input => only warning pop-up visible)
@@ -77,6 +89,14 @@ function addNewToDoTask() {
     divShade.style.display = "none";
     divImageStack.style.display = "none";
   } else {
+    //list element structure:
+    // <li>
+    //   <label id="1">go to the gym
+    //      <input type="checkbox">
+    //      <span></span>
+    //   </label>
+    // </li>
+
     let taskListElement = document.createElement("li");
     let taskLabel = createLabel(input);
 
@@ -84,35 +104,35 @@ function addNewToDoTask() {
     let inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
 
+    let taskSpan = document.createElement("span");
+    taskSpan.classList.add("checkmark");
+
+    let checkboxElements = [inputCheckbox, taskSpan];
+
+    taskLabel = createLabelWithCheckbox(taskLabel, checkboxElements);
+
+    taskListElement.appendChild(taskLabel);
+    listToDo.appendChild(taskListElement);
+
     //after checking the checkbox, the task is crossed out
     inputCheckbox.addEventListener("change", function () {
       let checked = inputCheckbox.checked;
       //first is the checkbox changed and then the function executed
       if (checked) {
         crossOut(inputCheckbox.parentElement);
+        para.removeAttribute("style");
       } else {
         cancelCrossOut(inputCheckbox.parentElement);
+        para.setAttribute("style", "display: none");
       }
     });
 
     //after changing the state of the checkbox, the task toggles between "Tasks to do" and "Tasks done"
-    inputCheckbox.addEventListener("change", function () {
-      let checked = inputCheckbox.checked;
-      //after checking the checkbox, the task should appear under "Tasks done"
-      if (checked) {
-        moveToTasksDone(inputCheckbox.parentElement);
-      }
-    });
-
-    let taskSpan = document.createElement("span");
-    taskSpan.class = "checkmark";
-
-    let checkboxElements = [inputCheckbox, taskSpan];
-
-    taskLabel = createCheckbox(taskLabel, checkboxElements);
-
-    taskListElement.appendChild(taskLabel);
-    ul.appendChild(taskListElement);
+    // inputCheckbox.addEventListener("change", function () {
+    //   let checked = inputCheckbox.checked;
+    //   //after checking the checkbox, the task should appear under "Tasks done"
+    //   changeList(taskListElement, checked);
+    // });
   }
 }
 
