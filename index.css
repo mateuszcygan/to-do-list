@@ -26,18 +26,6 @@ body {
   background: var(--error);
 }
 
-.alert-warning {
-  background: var(--warning);
-  height: 120px;
-  width: 440px;
-  max-width: 90%;
-  border-radius: 12px;
-  padding: 16px 22px 17px 20px;
-  /* display: flex;
-  flex-direction: column; */
-  align-items: center;
-}
-
 .alert {
   height: 50px;
   width: 200px;
@@ -45,6 +33,17 @@ body {
   border-radius: 12px;
   padding: 16px 22px 17px 20px;
   display: flex;
+  align-items: center;
+}
+
+.alert-warning {
+  background: var(--warning);
+  width: 285px;
+  max-width: 90%;
+  border-radius: 12px;
+  padding: 16px 22px 17px 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -121,6 +120,34 @@ body {
   touch-action: manipulation;
 }
 
+.pop-up-button-orange {
+  left: 192px;
+  top: 58px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.253);
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  max-width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  text-decoration: none;
+  text-transform: uppercase;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
 .icon-text {
   display: flex;
   flex-direction: row;
@@ -135,6 +162,15 @@ body {
 .icon-text-orange {
   display: flex;
   flex-direction: row;
+}
+
+#buttons-flex {
+  /* height: 50px;
+  width: 450px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 #wrapper {

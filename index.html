@@ -29,7 +29,7 @@
       <button class="pop-up-button" onClick="confirmEmptyInput()">OK</button>
     </div>
 
-    <div class="alert alert-warning">
+    <div class="alert-warning alert">
       <div class="icon-text-orange">
         <div class="icon__wrapper">
           <i
@@ -40,18 +40,20 @@
         </div>
         <div id="pop-up-orange-text">
           <p class="pop-up-text">The added task</p>
-          <p style="font-weight: normal; font-size: 14px">
+          <p style="font-weight: normal; font-size: 14px; margin-bottom: 6px">
             You have already added this task.
           </p>
         </div>
       </div>
 
-      <!-- <button class="pop-up-button" onClick="confirmEmptyInput()">
-        Cancel
-      </button>
-      <button class="pop-up-button" onClick="confirmEmptyInput()">
-        Add duplicate
-      </button> -->
+      <div id="buttons-flex">
+        <button class="pop-up-button-orange" onClick="confirmEmptyInput()">
+          Cancel
+        </button>
+        <button class="pop-up-button-orange" onClick="confirmEmptyInput()">
+          Add duplicate
+        </button>
+      </div>
     </div>
 
     <div id="image-stack">
