@@ -29,7 +29,7 @@
       <button class="pop-up-button" onClick="confirmEmptyInput()">OK</button>
     </div>
 
-    <div class="alert-warning alert">
+    <div class="alert-warning alert" style="display: none">
       <div class="icon-text-orange">
         <div class="icon__wrapper">
           <i
@@ -47,10 +47,10 @@
       </div>
 
       <div id="buttons-flex">
-        <button class="pop-up-button-orange" onClick="confirmEmptyInput()">
+        <button class="pop-up-button-orange" onClick="cancelDuplicate()">
           Cancel
         </button>
-        <button class="pop-up-button-orange" onClick="confirmEmptyInput()">
+        <button class="pop-up-button-orange" onClick="addDuplicate()">
           Add duplicate
         </button>
       </div>

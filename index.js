@@ -37,21 +37,45 @@ function containsOnlyWhiteSpaces(str) {
   return !str.replace(/\s/g, "").length;
 }
 
+let hideToDoList = () => {
+  let title = document.getElementById("title");
+  let searchBox = document.getElementById("main");
+  let tasksToDo = document.getElementById("my-tasks");
+  let tasksDone = document.getElementById("done");
+  let divWrapper = document.getElementById("wrapper");
+  let divShade = document.getElementById("shade");
+  let divImageStack = document.getElementById("image-stack");
+  title.style.display = "none";
+  searchBox.style.display = "none";
+  tasksToDo.style.display = "none";
+  tasksDone.style.display = "none";
+  divWrapper.style.display = "none";
+  divShade.style.display = "none";
+  divImageStack.style.display = "none";
+};
+
+//array with tasks-text that user entered
+const tasks = [];
+
 function addNewToDoTask() {
   //get a list with tasks to do and value of the input in input field
   let ul = document.getElementById("list-to-do");
   let input = document.getElementById("search-box").value;
+  console.log(input);
+  console.log(tasks);
 
   if (containsOnlyWhiteSpaces(input)) {
     //get all elements from the webpage (empty input => only warning pop-up visible)
+    hideToDoList();
     let warning = document.querySelector(".alert-error");
-    let title = document.getElementById("title");
-    let searchBox = document.getElementById("main");
-    let tasksToDo = document.getElementById("my-tasks");
-    let tasksDone = document.getElementById("done");
-    let divWrapper = document.getElementById("wrapper");
-    let divShade = document.getElementById("shade");
-    let divImageStack = document.getElementById("image-stack");
+
+    // let title = document.getElementById("title");
+    // let searchBox = document.getElementById("main");
+    // let tasksToDo = document.getElementById("my-tasks");
+    // let tasksDone = document.getElementById("done");
+    // let divWrapper = document.getElementById("wrapper");
+    // let divShade = document.getElementById("shade");
+    // let divImageStack = document.getElementById("image-stack");
 
     warning.style.display = "flex";
     // document.body.style.display = "flex";
@@ -60,14 +84,24 @@ function addNewToDoTask() {
     // warning.style.alignItems = "center";
 
     // console.log("Height: ", document.body.style.height);
-    title.style.display = "none";
-    searchBox.style.display = "none";
-    tasksToDo.style.display = "none";
-    tasksDone.style.display = "none";
-    divWrapper.style.display = "none";
-    divShade.style.display = "none";
-    divImageStack.style.display = "none";
+
+    // title.style.display = "none";
+    // searchBox.style.display = "none";
+    // tasksToDo.style.display = "none";
+    // tasksDone.style.display = "none";
+    // divWrapper.style.display = "none";
+    // divShade.style.display = "none";
+    // divImageStack.style.display = "none";
   } else {
+    tasks.forEach((element) => {
+      if (element == input) {
+        console.log("Duplicate!");
+        let warning = document.querySelector(".alert-warning");
+        warning.style.display = "flex";
+        hideToDoList();
+      }
+    });
+    tasks.push(input);
     let taskListElement = document.createElement("li");
     let taskLabel = createLabel(input);
 
