@@ -1,6 +1,7 @@
 //function that creates id (1, 2, 3 ...)
 let incrementID = (function (n) {
   return function () {
+    console.log("Test");
     n += 1;
     return n;
   };
